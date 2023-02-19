@@ -38,9 +38,19 @@ class UserController extends Controller
     public function authenticate(Request $request)
     {
         $validate = $request->validate([
-            'username' => 'required',
+            'email' => 'required',
             'password' => 'required'
         ]);
+
+        $user = User::where('email',$validate['email'])->get();
+
+        if($user->count()){
+            if(!$user[0]->verified){
+                return back()->withErrors(['email' => 'Not yet verified'])->onlyInput('email');
+            }
+        }
+
+        
 
         if(auth()->attempt($validate)) {
             $request->session()->regenerate();

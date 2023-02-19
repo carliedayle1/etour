@@ -39,7 +39,9 @@
             <span class="sr-only">Open user menu</span>
             <img class="w-8 h-8 rounded-full" src="{{ asset('/images/dinosaur.png') }}" alt="User Avatar">
           </button>
+          @if(auth()->user()->isAdmin)
           <span class="bg-pink-100 text-pink-800 text-xs font-medium mx-2 px-2.5 py-0.5 rounded dark:bg-pink-900 dark:text-pink-300">{{ \App\Models\User::where('verified', false)->count() }}</span>
+          @endif
           <!-- Dropdown menu -->
           <div class="z-50 hidden my-4 text-base list-none bg-white divide-y divide-gray-100 rounded-lg shadow dark:bg-gray-700 dark:divide-gray-600" id="user-dropdown">
             <div class="px-4 py-3">

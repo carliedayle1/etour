@@ -1,6 +1,8 @@
 @props(['touristSpots'])
 <div class="flex flex-col px-20 md:px-40 lg:px-80 space-y-4 my-20">
     <div class="text-xl text-bold">Tourist Spots</div>
+
+    @if($touristSpots->count())
     <form action="/tourist-spots">   
         <label for="default-search" class="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white">Search</label>
         <div class="relative">
@@ -21,4 +23,9 @@
     <div class="mt-6 p-4">
         {{$touristSpots->links()}}
     </div>
+    @else 
+    <div class="mt-6 p-4">
+        <div class="text-large">No tourist spots yet</div>
+    </div>
+    @endif
 </div>
